@@ -74,7 +74,7 @@ export default function Dashboard() {
         <div className="p-6">
           <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
             <Wallet className="w-6 h-6 text-indigo-600" />
-            NakitAkıllı
+            NakitTakip
           </h2>
         </div>
         <nav className="flex-1 px-4 space-y-1">

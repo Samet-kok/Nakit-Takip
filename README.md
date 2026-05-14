@@ -1,4 +1,4 @@
-# NakitAkıllı - Hackathon'26
+# NakitTakip - Hackathon'26
 
 Agentic KOBİ Finansal Yönetim Platformu.
 

@@ -45,7 +45,7 @@ export default function AuthPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold text-slate-800 mb-2">NakitAkıllı</h1>
+        <h1 className="text-2xl font-bold text-slate-800 mb-2">NakitTakip</h1>
         <p className="text-slate-500 mb-6 text-sm">KOBİ Agentic Finans Asistanı</p>
         
         <div className="flex gap-2 mb-6">

@@ -7,7 +7,7 @@ from app.routers import auth
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="NakitAkıllı API",
+    title="NakitTakip API",
     description="HACKATHON'26 - KOBİ Agentic Nakit Akışı Yönetimi",
     version="0.1.0"
 )
@@ -24,4 +24,4 @@ app.include_router(auth.router)
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "service": "nakitakilli-api"}
+    return {"status": "ok", "service": "nakittakip-api"}

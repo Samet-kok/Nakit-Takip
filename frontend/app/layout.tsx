@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NakitAkıllı - KOBİ Finans Asistanı",
+  title: "NakitTakip - KOBİ Finans Asistanı",
   description: "HACKATHON'26 - Agentic Nakit Akışı Yönetimi",
 };
 
