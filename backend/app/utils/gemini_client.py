@@ -1,7 +1,6 @@
 import google.generativeai as genai
 from app.config import get_settings
 import base64
-import io
 import json
 
 settings = get_settings()
@@ -9,7 +8,8 @@ genai.configure(api_key=settings.GEMINI_API_KEY)
 
 class GeminiClient:
     def __init__(self):
-        self.model = genai.GenerativeModel("gemini-1.5-flash-latest")
+        # 🔄 GÜNCELLENDİ: gemini-1.5-flash → gemini-2.5-flash
+        self.model = genai.GenerativeModel("gemini-2.5-flash")
     
     def extract_invoice_data(self, file_bytes: bytes, mime_type: str) -> dict:
         """
@@ -88,7 +88,7 @@ class GeminiClient:
                 "type": "expense",
                 "confidence": 0,
                 "error": str(e),
-                "raw_response": getattr(response, 'text', 'N/A') if 'response' in dir() else str(e)
+                "raw_response": ""
             }
 
 gemini_client = GeminiClient()
