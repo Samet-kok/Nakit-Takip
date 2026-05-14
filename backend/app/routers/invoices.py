@@ -100,3 +100,26 @@ def delete_invoice(
     db.delete(invoice)
     db.commit()
     return None
+
+class StatusUpdate(BaseModel):
+    status: str
+
+@router.patch("/{invoice_id}/status", response_model=InvoiceOut)
+def update_invoice_status(
+    invoice_id: int,
+    status_data: StatusUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    invoice = db.query(Invoice).filter(
+        Invoice.id == invoice_id, 
+        Invoice.user_id == current_user.id
+    ).first()
+    
+    if not invoice:
+        raise HTTPException(status_code=404, detail="Fatura bulunamadı")
+    
+    invoice.status = status_data.status
+    db.commit()
+    db.refresh(invoice)
+    return invoice

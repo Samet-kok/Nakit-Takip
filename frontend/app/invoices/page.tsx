@@ -93,6 +93,15 @@ export default function InvoicesPage() {
     }
   };
 
+  const handleStatusUpdate = async (id: number, newStatus: string) => {
+    try {
+      const { data } = await api.patch(`/invoices/${id}/status`, { status: newStatus });
+      setInvoices((prev) => prev.map((inv) => inv.id === id ? data : inv));
+    } catch {
+      setError("Durum güncelleme başarısız");
+    }
+  };
+
   const formatAmount = (amount: string, currency: string) => {
     return new Intl.NumberFormat("tr-TR", {
       style: "currency",
@@ -249,12 +258,24 @@ export default function InvoicesPage() {
                       )}
                     </td>
                     <td className="px-4 py-3 text-right">
-                      <button
-                        onClick={() => handleDelete(inv.id)}
-                        className="p-1.5 hover:bg-red-50 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      <div className="flex items-center justify-end gap-2">
+                        {inv.status === "pending" && (
+                          <button
+                            onClick={() => handleStatusUpdate(inv.id, "paid")}
+                            title="Ödendi olarak işaretle"
+                            className="p-1.5 hover:bg-emerald-50 rounded-lg text-slate-400 hover:text-emerald-600 transition-colors"
+                          >
+                            <CheckCircle className="w-4 h-4" />
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handleDelete(inv.id)}
+                          title="Sil"
+                          className="p-1.5 hover:bg-red-50 rounded-lg text-slate-400 hover:text-red-500 transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
