@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.routers import auth, invoices, agents, projections
+from fastapi.staticfiles import StaticFiles
+import os
 
 # Tabloları oluştur (Alembic'e geçmeden önce hızlı başlangıç)
 Base.metadata.create_all(bind=engine)
@@ -11,6 +13,11 @@ app = FastAPI(
     description="HACKATHON'26 - KOBİ Agentic Nakit Akışı Yönetimi",
     version="0.1.0"
 )
+
+# Uploads klasörünü dışarıya aç
+if not os.path.exists("uploads"):
+    os.makedirs("uploads")
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 app.add_middleware(
     CORSMiddleware,

@@ -9,7 +9,7 @@ genai.configure(api_key=settings.GEMINI_API_KEY)
 
 class GeminiClient:
     def __init__(self):
-        self.model = genai.GenerativeModel("gemini-1.5-flash")
+        self.model = genai.GenerativeModel("gemini-1.5-flash-latest")
     
     def extract_invoice_data(self, file_bytes: bytes, mime_type: str) -> dict:
         """
